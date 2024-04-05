@@ -1,0 +1,63 @@
+function createOneSlidePerRow() {
+  // Replace <Slide_ID> wih the ID of your 
+  // Google Slides presentation.
+  let masterDeckID = "<Slide_ID>";
+
+
+  let deck = SlidesApp.openById(masterDeckID);
+  let slides = deck.getSlides();
+
+
+  let masterSlide = slides[0];
+
+  let dataRange = SpreadsheetApp.getActive().getDataRange();
+  let sheetContents = dataRange.getValues();
+
+
+  let header = sheetContents.shift();
+
+ 
+  let updatedContents = [];
+
+
+  sheetContents.reverse();
+
+ 
+  sheetContents.forEach(function (row) {
+
+    
+    let slide = masterSlide.duplicate();
+
+    // Populate data in the slide that was created
+    slide.replaceAllText("{{EMAIL}}", row[1]);
+    slide.replaceAllText("{{FIRST}}", row[3]);
+    slide.replaceAllText("{{MIDDLE}}", row[5]);
+    slide.replaceAllText("{{LAST}}", row[4]);
+    slide.replaceAllText("{{NICKNAME}}", row[6]);
+    slide.replaceAllText("{{STUDENT}}", row[8]);
+    slide.replaceAllText("{{MOBILE}}", row[10]);
+    slide.replaceAllText("{{SEX}}", row[11]);
+    slide.replaceAllText("{{RELIGION}}", row[12]);
+    slide.replaceAllText("{{PROVINCE}}", row[13]);
+    slide.replaceAllText("{{CITY}}", row[14]);
+    slide.replaceAllText("{{BDAY}}", row[15]);
+    slide.replaceAllText("{{REASON}}", row[18]);
+    slide.replaceAllText("{{ACCEPT}}", row[19]);
+    slide.replaceAllText("{{TALENT}}", row[20]);
+    slide.replaceAllText("{{1}}", row[21]);
+    slide.replaceAllText("{{2}}", row[22]);
+    slide.replaceAllText("{{3}}", row[23]);
+    slide.replaceAllText("{{4}}", row[24]);
+    slide.replaceAllText("{{5}}", row[25]);
+    slide.replaceAllText("{{6}}", row[26]);
+    slide.replaceAllText("{{7}}", row[27]);
+    slide.replaceAllText("{{8}}", row[28]);
+    slide.replaceAllText("{{TRAIT}}", row[29]);
+    slide.replaceAllText("{{ORG}}", row[30]);
+    slide.replaceAllText("{{INVITE}}", row[31]);
+ 
+    
+  });
+
+
+}
